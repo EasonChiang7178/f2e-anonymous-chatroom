@@ -32,6 +32,7 @@ export const Button = styled.button`
   font-size: 20px;
   display: block;
   cursor: pointer;
+  transition: opacity .3s ease;
 
   &:hover {
     color: ${COLOR.YELLOW};
@@ -49,5 +50,11 @@ export const Button = styled.button`
   }
   &::after {
     content: "]"
+  }
+
+  &.disabled {
+    opacity: .6;
+    color: ${COLOR.WHITE};
+    cursor: not-allowed;
   }
 `

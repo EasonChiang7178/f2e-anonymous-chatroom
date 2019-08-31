@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { navigate } from "gatsby";
 
 import { PanelContainer, Panel, Button } from "../panels.css";
 
@@ -20,10 +21,18 @@ SetNameOptionPanel.propTypes = {
 };
 
 const SetNameOptionPanelContainer = () => {
+  const onAnonymousBtnClick = () => {
+    navigate("/chatroom")
+  }
+
+  const onNicknameClick = () => {
+    navigate("/set-name")
+  }
+
   return (
     <SetNameOptionPanel
-      onAnonymousBtnClick={() => console.warn("anonymous")}
-      onNicknameClick={() => console.warn("nickname")}
+      onAnonymousBtnClick={onAnonymousBtnClick}
+      onNicknameClick={onNicknameClick}
     />
   );
 };
