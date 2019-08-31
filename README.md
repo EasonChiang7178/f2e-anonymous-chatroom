@@ -1,6 +1,6 @@
 # Anonymous Chatroom
 
-仿VSCode介面
+仿 VSCode 介面
 劈哩啪啦的鍵盤聲，看似打程式很認真...
 
 DEMO: https://easonchiang7178.github.io/f2e-anonymous-chatroom/
