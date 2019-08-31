@@ -1,7 +1,7 @@
 import { renderToString } from "react-dom/server";
 import { ServerStyleSheet } from "styled-components";
 
-import wrapPageElementWithNavigator from "./src/helpers/wrapPageElement";
+import wrapPageElementWithContext from "./src/helpers/wrapPageElement";
 
 export const replaceRenderer = ({
   bodyComponent,
@@ -16,4 +16,4 @@ export const replaceRenderer = ({
   setHeadComponents(styleElement);
 };
 
-export const wrapPageElement = wrapPageElementWithNavigator;
+export const wrapPageElement = wrapPageElementWithContext;

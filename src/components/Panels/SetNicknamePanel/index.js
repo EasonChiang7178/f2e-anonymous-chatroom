@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { navigate } from "gatsby";
 
 import { PanelContainer, Panel, Button } from "../panels.css";
 import { Label, NicknameInput } from "./index.css";
+import ChatroomContext from "../../../contexts/ChatroomContext";
 
 const SetNicknamePanel = ({ defaultNickname, onConfirmBtnClick }) => {
   const [nicknameValue, setNicknameValue] = useState(defaultNickname)
@@ -20,7 +21,7 @@ const SetNicknamePanel = ({ defaultNickname, onConfirmBtnClick }) => {
         <Button
           className={isButtonDisabled === false ? "" : "disabled"}
           disabled={isButtonDisabled}
-          onClick={onConfirmBtnClick}
+          onClick={() => onConfirmBtnClick(nicknameValue)}
         >
           確定
         </Button>
@@ -35,13 +36,16 @@ SetNicknamePanel.propTypes = {
 };
 
 const SetNicknamePanelContainer = () => {
-  const onConfirmBtnClick = () => {
+  const { setUsername, username } = useContext(ChatroomContext)
+
+  const onConfirmBtnClick = (nickname) => {
+    setUsername(nickname);
     navigate("/chatroom");
   };
 
   return (
     <SetNicknamePanel
-      defaultNickname=""
+      defaultNickname={username}
       onConfirmBtnClick={onConfirmBtnClick}
     />
   );

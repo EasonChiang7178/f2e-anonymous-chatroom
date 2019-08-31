@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { navigate } from "gatsby";
+import shortid from "shortid"
 
 import { PanelContainer, Panel, Button } from "../panels.css";
+import ChatroomContext from "../../../contexts/ChatroomContext"
 
 const SetNameOptionPanel = ({ onAnonymousBtnClick, onNicknameClick }) => {
   return (
@@ -21,7 +23,11 @@ SetNameOptionPanel.propTypes = {
 };
 
 const SetNameOptionPanelContainer = () => {
+  const { setUsername } = useContext(ChatroomContext)
+  useEffect(() => setUsername(""), [])
+
   const onAnonymousBtnClick = () => {
+    setUsername(`id${shortid.generate()}`)
     navigate("/chatroom")
   }
 
