@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "anonymous-chatroom",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "劈哩啪啦的鍵盤聲，看似打程式很認真... | Designed by Miss_Y",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "EasonChiang7178 <ishiu.chiang@gmail.com>",
   "dependencies": {
     "gatsby": "^2.13.73",
     "gatsby-image": "^2.2.10",
@@ -30,14 +30,13 @@
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+    "serve": "gatsby serve"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/gatsbyjs/f2e-anonymous-chatroom"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/gatsbyjs/f2e-anonymous-chatroom/issues"
   }
 }
