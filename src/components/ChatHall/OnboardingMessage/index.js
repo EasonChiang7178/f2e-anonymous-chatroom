@@ -5,7 +5,7 @@ import { Container, Header, Button } from "./index.css"
 
 const OnboardingMessage = ({
   onRandomChatroomBtnClick,
-  onCreateChatroomClick
+  onCreateChatroomBtnClick
 }) => {
   return (
     <Container>
@@ -15,14 +15,14 @@ const OnboardingMessage = ({
       </Header>
 
       <Button onClick={onRandomChatroomBtnClick}>隨機進入群組</Button>
-      <Button onClick={onCreateChatroomClick}>新增聊天室</Button>
+      <Button onClick={onCreateChatroomBtnClick}>新增聊天室</Button>
     </Container>
   )
 };
 
 OnboardingMessage.propTypes = {
   onRandomChatroomBtnClick: PropTypes.func,
-  onCreateChatroomClick: PropTypes.func
+  onCreateChatroomBtnClick: PropTypes.func
 }
 
 export default OnboardingMessage;

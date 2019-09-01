@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
+import ChatroomRow from "./ChatroomRow"
 import {
   SlideInSidebarWrapper,
   HideSidebarButton,
@@ -14,13 +15,29 @@ import {
   MagnifyGlassIcon,
   RightTriangle,
   Collapse,
-  CollapsePanel
+  CollapsePanel,
+  FooterButton
 } from "./index.css";
+import ChatroomContext from "../../../contexts/ChatroomContext";
 
-const SlideInSidebar = ({ active, onHideBtnClick, onRandomChatroomBtnClick }) => {
+const SlideInSidebar = ({
+  active,
+  chatrooms,
+  chatroomsHistory,
+  onHideBtnClick,
+  onRandomChatroomBtnClick,
+  onCreateChatroomBtnClick,
+  onChatroomClick
+}) => {
   const collapseExpandIcon = ({ isActive }) => (
     <RightTriangle style={{ transform: `rotate(${isActive ? 90 : 0}deg) translateY(-50%)` }} />
   );
+
+  const publicChatroomsToShow = chatrooms
+    .filter(room => room.type === "public")
+
+  const historyChatroomsToShow = chatroomsHistory
+    .map(id => chatrooms.find(i => i.id === id))
 
   return (
     <SlideInSidebarWrapper active={active}>
@@ -42,17 +59,63 @@ const SlideInSidebar = ({ active, onHideBtnClick, onRandomChatroomBtnClick }) =>
       </UtilityWrapper>
 
       <Collapse defaultActiveKey="public" expandIcon={collapseExpandIcon}>
-        <CollapsePanel key="public" header="公開聊天室 (0)">123</CollapsePanel>
-        <CollapsePanel key="history" header="最近加入的聊天室">abc</CollapsePanel>
+        <CollapsePanel key="public" header={`公開聊天室 (${publicChatroomsToShow.length})`}>
+          {publicChatroomsToShow.map(room => (
+            <ChatroomRow
+              key={room.id}
+              id={room.id}
+              name={room.name}
+              memberNum={room.participates.length}
+              memberLimit={room.limitOfMember}
+              onClick={onChatroomClick}
+            />
+          ))}
+        </CollapsePanel>
+        <CollapsePanel key="history" header="最近加入的聊天室">
+          {historyChatroomsToShow.map(room => (
+            <ChatroomRow
+              key={room.id}
+              id={room.id}
+              name={room.name}
+              memberNum={room.participates.length}
+              memberLimit={room.limitOfMember}
+              onClick={onChatroomClick}
+            />
+          ))}
+        </CollapsePanel>
       </Collapse>
+
+      <FooterButton onClick={onCreateChatroomBtnClick}>新增聊天室</FooterButton>
     </SlideInSidebarWrapper>
   );
 };
 
 SlideInSidebar.propTypes = {
   active: PropTypes.bool,
+  chatrooms: PropTypes.array,
+  chatroomsHistory: PropTypes.array,
   onHideBtnClick: PropTypes.func.isRequired,
-  onRandomChatroomBtnClick: PropTypes.func
+  onRandomChatroomBtnClick: PropTypes.func,
+  onCreateChatroomBtnClick: PropTypes.func,
+  onChatroomClick: PropTypes.func
 };
 
-export default SlideInSidebar;
+
+const SlideInSidebarContainer = ({ active, onHideBtnClick }) => {
+  const { chatrooms, chatroomsHistory } = useContext(ChatroomContext)
+
+  return (
+    <SlideInSidebar
+      active={active}
+      chatrooms={chatrooms}
+      chatroomsHistory={chatroomsHistory}
+      onHideBtnClick={onHideBtnClick}
+      onRandomChatroomBtnClick={() => {}}
+      onCreateChatroomBtnClick={() => {}}
+      onChatroomClick={(id) => console.warn(id)}
+    />
+  )
+}
+
+
+export default SlideInSidebarContainer;

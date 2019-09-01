@@ -64,6 +64,9 @@ export const SlideInSidebarWrapper = styled.aside`
   top: 0;
   transform: translateX(-308px);
   transition: transform .3s ease;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 
   ${props => props.active && {
     transform: "translateX(0)"
@@ -200,4 +203,9 @@ export const CollapsePanel = styled(Panel)`
       margin: 12px 0 11px;
     }
   }
+`
+
+export const FooterButton = styled(StyledButton)`
+  margin: auto auto 16px;
+  width: calc(100% - 26px);
 `
