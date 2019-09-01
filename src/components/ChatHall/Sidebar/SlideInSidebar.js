@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
 
 import ChatroomRow from "./ChatroomRow"
@@ -29,15 +29,19 @@ const SlideInSidebar = ({
   onCreateChatroomBtnClick,
   onChatroomClick
 }) => {
+  const [searchKeyword, setSearchKeyword] = useState("")
+
   const collapseExpandIcon = ({ isActive }) => (
     <RightTriangle style={{ transform: `rotate(${isActive ? 90 : 0}deg) translateY(-50%)` }} />
   );
 
   const publicChatroomsToShow = chatrooms
     .filter(room => room.type === "public")
+    .filter(room => room.name.indexOf(searchKeyword) !== -1)
 
   const historyChatroomsToShow = chatroomsHistory
     .map(id => chatrooms.find(i => i.id === id))
+    .filter(room => room.name.indexOf(searchKeyword) !== -1)
 
   return (
     <SlideInSidebarWrapper active={active}>
@@ -53,7 +57,7 @@ const SlideInSidebar = ({
         <Button onClick={onRandomChatroomBtnClick}>隨機進入群組</Button>
 
         <SearchInputWrapper>
-          <SearchInput placeholder="搜尋聊天室名稱或編號" />
+          <SearchInput value={searchKeyword} placeholder="搜尋聊天室名稱" onChange={e => setSearchKeyword(e.currentTarget.value)} />
           <MagnifyGlassIcon />
         </SearchInputWrapper>
       </UtilityWrapper>
