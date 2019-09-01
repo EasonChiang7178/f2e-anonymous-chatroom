@@ -7,7 +7,7 @@ import ChatWindow from "./ChatWindow"
 import OnboardingMessage from "./OnboardingMessage"
 
 const ChatHall = ({ joinedChatroomIds }) => {
-  const [isSidebarActive, toggleSidebar] = useState(false)
+  const [isSidebarActive, toggleSidebar] = useState(true)
 
   return (
     <Wrapper>
