@@ -5,6 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import { COLOR } from "../constants";
 
 import "rc-collapse/assets/index.css";
+import "./react-modal.css";
 
 const Global = createGlobalStyle`
   body {

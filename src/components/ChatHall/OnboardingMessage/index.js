@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types"
 
 import { Container, Header, Button } from "./index.css"
+import ChatroomContext from "../../../contexts/ChatroomContext";
 
 const OnboardingMessage = ({
   onRandomChatroomBtnClick,
@@ -25,4 +26,17 @@ OnboardingMessage.propTypes = {
   onCreateChatroomBtnClick: PropTypes.func
 }
 
-export default OnboardingMessage;
+
+const OnboardingMessageContainer = () => {
+  const { toShowCreateChatroomModal } = useContext(ChatroomContext);
+
+  return (
+    <OnboardingMessage
+      onRandomChatroomBtnClick={() => {}}
+      onCreateChatroomBtnClick={() => toShowCreateChatroomModal(true)}
+    />
+  )
+}
+
+
+export default OnboardingMessageContainer;

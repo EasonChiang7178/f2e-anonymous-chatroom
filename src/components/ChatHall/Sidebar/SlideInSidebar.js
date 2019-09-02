@@ -106,7 +106,7 @@ SlideInSidebar.propTypes = {
 
 
 const SlideInSidebarContainer = ({ active, onHideBtnClick }) => {
-  const { chatrooms, chatroomsHistory } = useContext(ChatroomContext)
+  const { chatrooms, chatroomsHistory, toShowCreateChatroomModal } = useContext(ChatroomContext)
 
   return (
     <SlideInSidebar
@@ -115,7 +115,7 @@ const SlideInSidebarContainer = ({ active, onHideBtnClick }) => {
       chatroomsHistory={chatroomsHistory}
       onHideBtnClick={onHideBtnClick}
       onRandomChatroomBtnClick={() => {}}
-      onCreateChatroomBtnClick={() => {}}
+      onCreateChatroomBtnClick={() => toShowCreateChatroomModal(true)}
       onChatroomClick={(id) => console.warn(id)}
     />
   )
